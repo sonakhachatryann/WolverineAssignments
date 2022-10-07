@@ -1,9 +1,9 @@
 #include <iostream>
 
-void memset(char* str, char ch, int size) {
+void memset(void* str, char ch, size_t size) {
 	while (size != 0) {
-		*str = ch;
-		++str;
+		*(char *)str = ch;
+		str = static_cast<char *>(str) +1;
 		--size;
 	}
 	return;
