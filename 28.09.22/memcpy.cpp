@@ -1,10 +1,10 @@
 #include <iostream>
-void memcpy(char* src, char* dest, int size) {
+void memcpy(void* src, void* dest, size_t size) {
 	int i = 0;
 	while (size != 0) {
-		dest[i] = *src;
+		*((char *)dest + i) = *(char *)src;
 		++i;
-		++src;
+		src = static_cast<char *>(src) + 1;
 		--size;
 	}
 	return;
