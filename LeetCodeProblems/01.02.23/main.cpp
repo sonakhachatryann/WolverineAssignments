@@ -42,8 +42,8 @@ bool isNumber(std::string s) {
 }
 
 //137. Single Number II
-//time complexity O()
-//space complexity O()
+//time complexity O(32*n) = O(n)
+//space complexity O(1)
 int singleNumber(std::vector<int>& nums) {
         int size_of_int = sizeof(int) * 8;
         int tmp = size_of_int;
@@ -68,8 +68,25 @@ int singleNumber(std::vector<int>& nums) {
     }
 
 //260. Single Number III
-//time complexity O()
-//space complexity O()
+//time complexity O(n)
+//space complexity O(1)
+std::vector<int> _singleNumber(std::vector<int>& nums) {
+        unsigned int tmp = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            tmp ^= nums[i];
+        }
+        tmp &= -tmp;
+        std::vector<int> result = {0, 0};
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] & tmp) {
+                result[0] ^= nums[i];
+            }
+            else {
+                result[1] ^= nums[i];
+            }
+        }
+        return result;
+    }
 
 //23. Merge k Sorted Lists
 //time complexity O()
